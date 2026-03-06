@@ -16,16 +16,11 @@ class Tournament:
     def __repr__(self):
         return f"{self.name} / {self.location} / ({self.start_date} - {self.end_date})"
 
-    def add_player(self, player):
-        self.players.append(player)
-
-    def add_round(self, round_):
-        self.rounds.append(round_)
-
     def next_round(self):
         self.current_round += 1
 
-    def get_scores(self):
+    @property
+    def scores(self):
         scores = {player: 0 for player in self.players}
         for round_ in self.rounds:
             for match in round_.matches:
@@ -33,12 +28,10 @@ class Tournament:
                 scores[match.player2] += match.score2
         return scores
 
-    def get_scoreboard(self):
-        scoreboard = []
-        for round_ in self.rounds:
-            for match in round_.matches:
-                scoreboard.append(match.get_tuple_result())
-        return scoreboard
+    @property
+    def scoreboard(self):
+        return sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
+
 
 class Player:
     def __init__(self, national_id, first_name, last_name, date_of_birth):
@@ -64,9 +57,6 @@ class Round:
     def __repr__(self):
         return f"{self.name}"
 
-    def add_match(self, match):
-        self.matches.append(match)
-
     def mark_start_time(self):
         self.start_time = datetime.now()
 
@@ -80,8 +70,8 @@ class Match:
         self.score1 = 0
         self.score2 = 0
 
-    def get_tuple_result(self):
-        return ([self.player1, self.score1], [self.player2, self.score2])
+    def __repr__(self):
+        return f"{self.player1} {self.score1} - {self.score2} {self.player2}"
 
     def set_result(self, winner=None):
         if winner is None:
@@ -93,3 +83,79 @@ class Match:
         elif winner == self.player2:
             self.score1 = 0
             self.score2 = 1
+
+
+# Création d'un tournois et ajout des joueurs
+
+tournoi = Tournament("Tournoi d'échecs", "Paris", "2024-07-01", "2024-07-10")
+print("Tournoi créé :", tournoi)
+
+joueur1 = Player("AB12345", "Alice", "Dupont", "1990-01-01")
+joueur2 = Player("CD67890", "Bob", "Martin", "1985-05-15")
+joueur3 = Player("EF54321", "Charlie", "Durand", "1992-03-20")
+joueur4 = Player("GH09876", "Diana", "Lemoine", "1988-11-30")
+
+tournoi.players.append(joueur1)
+tournoi.players.append(joueur2)
+tournoi.players.append(joueur3)
+tournoi.players.append(joueur4)
+
+print("Joueurs inscrits :", tournoi.players)
+
+tournoi.next_round()
+print("Round suivant :", tournoi.current_round)
+
+# Création d'un round et ajout des matches
+
+round1 = Round("Round 1")
+
+round1.matches.append(Match(joueur1, joueur2))
+round1.matches.append(Match(joueur3, joueur4))
+
+tournoi.rounds.append(round1)
+
+print("Round ajouté :", tournoi.rounds)
+
+round1.mark_start_time()
+round1.matches[0].set_result(winner=joueur1)
+round1.matches[1].set_result(winner=joueur3)
+round1.mark_end_time()
+print("Round terminé :", round1)
+
+# Affichage des résultats
+
+print("\nResultats Round 1 :")
+for match in round1.matches:
+    print(f"  {match.player1} {match.score1} - {match.score2} {match.player2}")
+
+print("\nScores :")
+for player, score in tournoi.scores.items():
+    print(f"  {player} : {score} pts")
+
+print("\nJoueurs par ordre alphabetique :")
+for player in sorted(tournoi.players):
+    print(f"  {player}")
+
+#Lancement du deuxieme round
+
+tournoi.next_round()
+round2 = Round(f"Round {tournoi.current_round}")
+round2.mark_start_time()
+round2.matches.append(Match(joueur1, joueur3))
+round2.matches.append(Match(joueur2, joueur4))
+round2.matches[0].set_result()  # match nul
+round2.matches[1].set_result(winner=joueur4)
+round2.mark_end_time()
+tournoi.rounds.append(round2)
+
+print("\nResultats Round 2 :")
+for match in round2.matches:
+    print(f"  {match.player1} {match.score1} - {match.score2} {match.player2}")
+
+print("\nScores apres Round 2 :")
+for player, score in tournoi.scores.items():
+    print(f"  {player} : {score} pts")
+
+print ('\n Fin du tournoi, classement :')
+for result in tournoi.scoreboard:
+    print(f"  {result}")
