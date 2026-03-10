@@ -1,0 +1,33 @@
+class PlayerMainView:
+    def display_main_players(self):
+        print ("=== MENU JOUEURS ===")
+        print ("1. Liste des joueurs")
+        print ("2. Ajouter un joueur")
+        print ("0. Retour")
+
+    def get_user_choice(self):
+        return input("\nVotre choix : ")
+    
+class PlayerListView:
+    def display_players(self, players):
+        print ("=== LISTE DES JOUEURS ===")
+        for player in sorted(players):
+            print(f"{player.last_name} {player.first_name} - {player.national_id} - {player.date_of_birth}")
+
+    def get_user_choice(self):
+        return input("\nAppuyez sur Entrée pour retourner au menu des joueurs")
+    
+class PlayerAddView:
+    def display_add_player(self):
+        print("=== AJOUTER UN JOUEUR ===")
+
+    def get_player_data(self):
+        last_name = input("Nom : ")
+        first_name = input("Prénom : ")
+        date_of_birth = input("Date de naissance (YYYY-MM-DD) : ")
+        national_id = input("National ID : ")
+        return last_name, first_name, date_of_birth, national_id
+
+    def get_user_choice(self):
+        print ("Appuyez sur Entrée pour enregistrer le joueur")
+        return input("\nVotre choix : ")
