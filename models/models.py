@@ -1,4 +1,5 @@
 from datetime import datetime
+import random
 
 class Tournament:
     def __init__(self, name, location, start_date, end_date,
@@ -31,6 +32,49 @@ class Tournament:
     @property
     def scoreboard(self):
         return sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
+    
+    def has_played(self, player1, player2):
+        for round_ in self.rounds:
+            for match in round_.matches:
+                if {match.player1, match.player2} == {player1, player2}:
+                    return True
+        return False
+
+    def generate_pairs(self):
+        # Premier round : ordre aléatoire
+        # Rounds suivants : triés par score
+        if not self.rounds:
+            players = random.sample(self.players, len(self.players))
+        else:
+            sorted_scores = self.scoreboard  # déjà trié par score desc
+            players = [player for player, _ in sorted_scores]
+
+        pairs = []
+        remaining = players.copy()
+
+        while len(remaining) >= 2:
+            player1 = remaining.pop(0)
+            paired = False
+            for i, player2 in enumerate(remaining):
+                if not self.has_played(player1, player2):
+                    pairs.append((player1, player2))
+                    remaining.pop(i)
+                    paired = True
+                    break
+            if not paired:
+                # Tous les adversaires possibles ont déjà été affrontés
+                # On prend le premier disponible par défaut
+                pairs.append((player1, remaining.pop(0)))
+
+        return pairs
+
+    def generate_round(self):
+        round_ = Round(f"Round {self.current_round + 1}")
+        for player1, player2 in self.generate_pairs():
+            round_.matches.append(Match(player1, player2))
+        self.rounds.append(round_)
+        self.next_round()
+        return round_
 
 
 class Player:
@@ -62,6 +106,7 @@ class Round:
 
     def mark_end_time(self):
         self.end_time = datetime.now()
+
 
 class Match:
     def __init__(self, player1, player2):
@@ -102,23 +147,15 @@ tournoi.players.append(joueur4)
 
 print("Joueurs inscrits :", tournoi.players)
 
-tournoi.next_round()
-print("Round suivant :", tournoi.current_round)
-
-# Création d'un round et ajout des matches
-
-round1 = Round("Round 1")
-
-round1.matches.append(Match(joueur1, joueur2))
-round1.matches.append(Match(joueur3, joueur4))
-
-tournoi.rounds.append(round1)
-
-print("Round ajouté :", tournoi.rounds)
+round1 =tournoi.generate_round()
 
 round1.mark_start_time()
-round1.matches[0].set_result(winner=joueur1)
-round1.matches[1].set_result(winner=joueur3)
+
+for match in round1.matches:
+    match.set_result()
+
+print("Matches terminés :", round1.matches)
+
 round1.mark_end_time()
 print("Round terminé :", round1)
 
@@ -138,24 +175,23 @@ for player in sorted(tournoi.players):
 
 #Lancement du deuxieme round
 
-tournoi.next_round()
-round2 = Round(f"Round {tournoi.current_round}")
-round2.mark_start_time()
-round2.matches.append(Match(joueur1, joueur3))
-round2.matches.append(Match(joueur2, joueur4))
-round2.matches[0].set_result()  # match nul
-round2.matches[1].set_result(winner=joueur4)
-round2.mark_end_time()
-tournoi.rounds.append(round2)
+# tournoi.next_round()
+# round2 = Round(f"Round {tournoi.current_round}")
+# round2.mark_start_time()
 
-print("\nResultats Round 2 :")
-for match in round2.matches:
-    print(f"  {match.player1} {match.score1} - {match.score2} {match.player2}")
+# round2.matches[0].set_result()  # match nul
+# round2.matches[1].set_result(winner=joueur4)
+# round2.mark_end_time()
+# tournoi.rounds.append(round2)
 
-print("\nScores apres Round 2 :")
-for player, score in tournoi.scores.items():
-    print(f"  {player} : {score} pts")
+# print("\nResultats Round 2 :")
+# for match in round2.matches:
+#     print(f"  {match.player1} {match.score1} - {match.score2} {match.player2}")
 
-print ('\n Fin du tournoi, classement :')
-for result in tournoi.scoreboard:
-    print(f"  {result}")
+# print("\nScores apres Round 2 :")
+# for player, score in tournoi.scores.items():
+#     print(f"  {player} : {score} pts")
+
+# print ('\n Fin du tournoi, classement :')
+# for result in tournoi.scoreboard:
+#     print(f"  {result}")
