@@ -42,12 +42,10 @@ class Tournament:
         return False
 
     def generate_pairs(self):
-        # Premier round : ordre aléatoire
-        # Rounds suivants : triés par score
         if not self.rounds:
             players = random.sample(self.players, len(self.players))
         else:
-            sorted_scores = self.scoreboard  # déjà trié par score desc
+            sorted_scores = self.scoreboard
             players = [player for player, _ in sorted_scores]
 
         pairs = []
@@ -63,8 +61,6 @@ class Tournament:
                     paired = True
                     break
             if not paired:
-                # Tous les adversaires possibles ont déjà été affrontés
-                # On prend le premier disponible par défaut
                 pairs.append((player1, remaining.pop(0)))
 
         return pairs

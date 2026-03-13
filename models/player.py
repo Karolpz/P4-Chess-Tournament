@@ -11,4 +11,11 @@ class Player:
     def __lt__(self, other):
         return (self.last_name.lower(), self.first_name.lower()) < \
                (other.last_name.lower(), other.first_name.lower()) # Permet de comparer les joueurs pour ensuite les trier par ordre alphabétique
-        
+
+    def __eq__(self, other):
+        if not isinstance(other, Player):
+            return NotImplemented
+        return self.national_id == other.national_id
+    
+    def __hash__(self):
+        return hash(self.national_id)

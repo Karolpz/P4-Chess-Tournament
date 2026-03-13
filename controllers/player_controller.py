@@ -1,5 +1,6 @@
 from models.player import Player
 from views.player_view import PlayerMainView, PlayerListView, PlayerAddView
+from views.common_view import CommonView
 
 class PlayerController:
     def __init__(self, players):
@@ -7,6 +8,7 @@ class PlayerController:
         self.main_view = PlayerMainView()
         self.list_view = PlayerListView()
         self.add_view = PlayerAddView()
+        self.common_view = CommonView()
 
     def run(self):
         while True:
@@ -21,7 +23,7 @@ class PlayerController:
                 case "0":
                     break
                 case _:
-                    print("Choix invalide")
+                    self.common_view.display_invalid_choice()
 
     def show_players(self):
         self.list_view.display_players(self.players)
@@ -29,7 +31,17 @@ class PlayerController:
 
     def add_player(self):
         self.add_view.display_add_player()
-        last_name, first_name, date_of_birth, national_id = self.add_view.get_player_data()
-        player = Player(national_id, first_name, last_name, date_of_birth)
-        self.players.append(player)
-        print(f"\nJoueur {player} ajouté !")
+        data = self.add_view.get_player_data()
+        player = Player(**data)
+        confirm = self.add_view.confirm_player()
+        
+        match confirm:
+            case "1":
+                self.players.append(player)
+                self.common_view.display_confirmation()
+            case "0":
+                return
+            case _:
+                self.common_view.display_invalid_choice()
+
+        

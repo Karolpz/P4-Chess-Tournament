@@ -22,12 +22,12 @@ class PlayerAddView:
         print("=== AJOUTER UN JOUEUR ===")
 
     def get_player_data(self):
-        last_name = input("Nom : ")
-        first_name = input("Prénom : ")
-        date_of_birth = input("Date de naissance (YYYY-MM-DD) : ")
-        national_id = input("National ID : ")
-        return last_name, first_name, date_of_birth, national_id
+        return {
+            "last_name" : input("Nom : "),
+            "first_name": input("Prénom : "),
+            "date_of_birth" : input("Date de naissance (YYYY-MM-DD) : "),
+            "national_id" : input("National ID : ")
+        }
 
-    def get_user_choice(self):
-        print ("Appuyez sur Entrée pour enregistrer le joueur")
-        return input("\nVotre choix : ")
+    def confirm_player(self):
+        return input("\nConfirmez-vous l'ajout du joueur ? (1 = Oui / 0 = Annuler) : ")

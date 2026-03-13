@@ -1,9 +1,11 @@
 from views.main_view import MainView
 from controllers.player_controller import PlayerController
+from views.common_view import CommonView
 
 class MainController:
     def __init__(self):
         self.view = MainView()
+        self.common_view = CommonView()
         self.players = []
 
     def run(self):
@@ -22,4 +24,4 @@ class MainController:
                     print("Au revoir !")
                     break
                 case _:
-                    print("Choix invalide")
+                    self.common_view.display_invalid_choice()
