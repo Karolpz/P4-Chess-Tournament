@@ -11,7 +11,7 @@ class PlayerMainView:
 class PlayerListView:
     def display_players(self, players):
         print ("=== LISTE DES JOUEURS ===")
-        for player in sorted(players):
+        for player in players:
             print(f"{player.last_name} {player.first_name} - {player.national_id} - {player.date_of_birth}")
 
     def get_user_choice(self):

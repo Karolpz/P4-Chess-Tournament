@@ -1,12 +1,14 @@
 from views.main_view import MainView
 from controllers.player_controller import PlayerController
+from controllers.tournament_controller import TournamentController
 from views.common_view import CommonView
+from models.database import DataBase
 
 class MainController:
     def __init__(self):
         self.view = MainView()
         self.common_view = CommonView()
-        self.players = []
+        self.database = DataBase()  
 
     def run(self):
         while True:
@@ -15,9 +17,9 @@ class MainController:
 
             match choice:
                 case "1":
-                    PlayerController(self.players).run()
+                    PlayerController(self.database).run()
                 case "2":
-                    print("Tournois - à venir")
+                    TournamentController(self.database).run()
                 case "3":
                     print("Rapports - à venir")
                 case "0":

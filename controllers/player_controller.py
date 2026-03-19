@@ -3,8 +3,8 @@ from views.player_view import PlayerMainView, PlayerListView, PlayerAddView
 from views.common_view import CommonView
 
 class PlayerController:
-    def __init__(self, players):
-        self.players = players  # liste des joueurs partagée
+    def __init__(self, database):
+        self.database = database
         self.main_view = PlayerMainView()
         self.list_view = PlayerListView()
         self.add_view = PlayerAddView()
@@ -26,7 +26,8 @@ class PlayerController:
                     self.common_view.display_invalid_choice()
 
     def show_players(self):
-        self.list_view.display_players(self.players)
+        players = self.database.get_sorted_players()
+        self.list_view.display_players(players)
         self.list_view.get_user_choice()
 
     def add_player(self):
@@ -37,7 +38,7 @@ class PlayerController:
         
         match confirm:
             case "1":
-                self.players.append(player)
+                self.database.players.append(player)
                 self.common_view.display_confirmation()
             case "0":
                 return

@@ -9,7 +9,7 @@ class Tournament:
         self.location = location
         self.start_date = start_date
         self.end_date = end_date
-        self.number_of_rounds = number_of_rounds
+        self.number_of_rounds = int(number_of_rounds)
         self.current_round = 0
         self.rounds = []
         self.players = []
@@ -72,3 +72,7 @@ class Tournament:
         self.rounds.append(round_)
         self.next_round()
         return round_
+    
+    @property
+    def is_finished(self):
+        return self.current_round >= self.number_of_rounds
