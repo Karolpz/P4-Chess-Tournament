@@ -15,3 +15,10 @@ class Round:
 
     def mark_end_time(self):
         self.end_time = datetime.now()
+
+    @property
+    def is_current_round_complete(self):
+        round_ = self.rounds[-1] if self.rounds else None
+        if not round_:
+            return False
+        return all(match.is_finished() for match in round_.matches)

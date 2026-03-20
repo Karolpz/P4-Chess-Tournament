@@ -1,6 +1,6 @@
 from models.tournament import Tournament
 from models.player import Player
-from views.tournament import TournamentMainView, TournamentAddView, TournamentAddPlayerView
+from views.tournament import TournamentMainView, TournamentAddView, TournamentAddPlayerView, TournamentListView
 from views.common_view import CommonView
 
 class TournamentController:
@@ -9,12 +9,13 @@ class TournamentController:
         self.main_view = TournamentMainView()
         self.add_view = TournamentAddView()
         self.add_player_view = TournamentAddPlayerView()
+        self.list_view = TournamentListView()
         self.common_view = CommonView()
 
     def run(self):
         while True:
             self.main_view.display_main_menu()
-            choice = self.main_view.get_user_choice()
+            choice = self.common_view.get_user_choice()
 
             match choice:
                 case "1":
@@ -36,8 +37,12 @@ class TournamentController:
         self.common_view.display_confirmation()
 
     def add_tournament_player(self):
-        active = self.database.tournament.get_active_tournaments()
-        self.add_player_view.display_current_tournament(active)
+        active = self.database.get_active_tournaments()
+        if not active:
+            self.list_view.display_no_active_tournament()
+            self.common_view.display_press_enter()
+            return
+        self.list_view.display_current_tournament(active)
         choice = self.common_view.get_user_choice()
 
         if choice == "0":
@@ -50,14 +55,31 @@ class TournamentController:
             if national_id == "0":
                 break
 
-            player = None
-            for p in self.database.players:
-                if p.national_id == national_id:
-                    player = p
-                    break
+            player = self.database.find_player(national_id)
 
             if player:
                 tournament.players.append(player)
                 self.add_player_view.display_player_added(player)
             else:
                 self.add_player_view.display_player_not_found(national_id)
+
+    def get_tournament_details(self, tournament):
+        active = self.database.get_active_tournaments()
+        if not active:
+            self.list_view.display_no_active_tournament()
+            self.common_view.display_press_enter()
+            return
+        self.list_view.display_current_tournament(active)
+        choice = self.common_view.get_user_choice()
+
+        if choice == "0":
+            return
+
+        tournament = active[int(choice) - 1]
+
+        while True:
+            self.list_view.display_tournament_details(tournament)
+            choice = self.common_view.get_user_choice()
+
+            if choice == "0":
+                break

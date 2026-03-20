@@ -18,3 +18,6 @@ class Match:
         elif winner == self.player2:
             self.score1 = 0
             self.score2 = 1
+
+    def is_finished(self):
+        return self.score1 != 0 or self.score2 != 0

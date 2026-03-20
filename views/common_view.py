@@ -7,3 +7,5 @@ class CommonView:
         print("Choix invalide")
     def display_cancelled(self):
         print("\nOpération annulée.")
+    def display_press_enter(self):
+        input("\nAppuyez sur Entrée pour continuer...")

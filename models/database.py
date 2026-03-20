@@ -20,3 +20,9 @@ class DataBase:
     
     def get_sorted_players(self):
         return sorted(self.players)
+    
+    def find_player(self, national_id):
+        for player in self.players:
+            if player.national_id == national_id:
+                return player
+        return None
