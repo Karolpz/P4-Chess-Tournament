@@ -1,3 +1,5 @@
+import re
+
 class Player:
     def __init__(self, national_id, first_name, last_name, date_of_birth):
         self.national_id = national_id
@@ -19,3 +21,9 @@ class Player:
     
     def __hash__(self):
         return hash(self.national_id)
+    
+    def validate_national_id(national_id):
+        pattern = r'^[A-Z]{2}\d{5}$'
+        if not re.match(pattern, national_id.upper()):
+            raise ValueError(f"Identifiant national invalide : {national_id}. Format attendu : AB12345")
+        return national_id.upper()

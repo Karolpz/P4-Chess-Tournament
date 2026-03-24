@@ -78,3 +78,10 @@ class Tournament:
         if not self.rounds:
             return False
         return self.rounds[-1].is_complete
+    @property
+    def is_finished(self):
+        if self.current_round < self.number_of_rounds:
+            return False
+        if not self.rounds:
+            return False
+        return self.is_current_round_complete

@@ -9,3 +9,5 @@ class CommonView:
         print("\nOpération annulée.")
     def display_press_enter(self):
         input("\nAppuyez sur Entrée pour continuer...")
+    def display_invalid_data(self, error):
+        print(f"Données invalides : {error}")

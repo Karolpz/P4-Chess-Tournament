@@ -33,7 +33,11 @@ class PlayerController:
     def add_player(self):
         self.add_view.display_add_player()
         data = self.add_view.get_player_data()
-        player = Player(**data)
+        try:
+            player = Player(**data)
+        except ValueError as e:
+            self.common_view.display_invalid_data(e)
+            return
         confirm = self.add_view.confirm_player()
         
         match confirm:
