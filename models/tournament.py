@@ -74,9 +74,7 @@ class Tournament:
         return round_
     
     @property
-    def is_finished(self):
-        if self.current_round < self.number_of_rounds:
-            return False
+    def is_current_round_complete(self):
         if not self.rounds:
             return False
-        return self.is_current_round_complete
+        return self.rounds[-1].is_complete

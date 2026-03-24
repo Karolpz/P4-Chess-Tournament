@@ -17,8 +17,6 @@ class Round:
         self.end_time = datetime.now()
 
     @property
-    def is_current_round_complete(self):
-        round_ = self.rounds[-1] if self.rounds else None
-        if not round_:
-            return False
-        return all(match.is_finished() for match in round_.matches)
+    def is_complete(self):
+        return bool(self.matches) and all(match.is_finished() for match in self.matches)
+    
