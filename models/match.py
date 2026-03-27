@@ -8,7 +8,7 @@ class Match:
     def __repr__(self):
         return f"{self.player1} {self.score1} - {self.score2} {self.player2}"
 
-    def set_result(self, winner=None):
+    def set_results(self, winner=None):
         if winner is None:
             self.score1 = 0.5
             self.score2 = 0.5

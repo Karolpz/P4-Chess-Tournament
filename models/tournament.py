@@ -66,7 +66,10 @@ class Tournament:
         return pairs
 
     def generate_round(self):
+        if self.rounds:
+            self.rounds[-1].mark_end_time()
         round_ = Round(f"Round {self.current_round + 1}")
+        round_.mark_start_time()
         for player1, player2 in self.generate_pairs():
             round_.matches.append(Match(player1, player2))
         self.rounds.append(round_)

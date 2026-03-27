@@ -2,7 +2,7 @@ class TournamentMainView:
     def display_main_menu(self):
         print("=== MENU TOURNOIS ===")
         print("1. Créer un tournoi")
-        print("2. Liste des tournois")
+        print("2. Liste des tournois en cours")
         print("3. Ajouter un joueur au tournoi")
         print("0. Retour")
 
@@ -52,16 +52,52 @@ class TournamentDetailsView:
         print(f"Date de fin : {tournament.end_date}")
         print(f"Nombre de rondes : {tournament.number_of_rounds}")
         print(f"Ronde en cours : {tournament.current_round}")
+        print(f"Joueurs inscrits : {len(tournament.players)}")
         print(f"Description : {tournament.description}")
+        if tournament.is_finished:
+            print(f"Le tournoi {tournament.name} est terminé.")
 
-        print("1. Lancer le prochain round")
-        print("2. Afficher les matchs")
-        print("3. Afficher le classement")
-        print("4. Afficher les joueurs inscrits")
-        print("0. Retour")
+    def display_actions(self, actions):
+        labels = {
+            "start": "Lancer le tournoi",
+            "next_round": "Lancer le prochain round",
+            "finished_round": "Terminer le round en cours",
+            "enter_results": "Entrer les résultats",
+            "show_scores": "Afficher les scores",
+            "show_matches": "Afficher les matchs en cours",
+            "back": "Retour"
+        }
+        mapping = {}
+        number = 1
+        for action in actions:
+            if action == "back":
+                print(f"0. {labels[action]}")
+            else:
+                print(f"{number}. {labels[action]}")
+                mapping[str(number)] = action
+                number += 1
+        return mapping
+    
+    def display_round_matches(self, round_):
+        print(f"=== {round_.name} ===")
+        for i, match in enumerate(round_.matches, 1):
+            print(f"  {i}. {match.player1} vs {match.player2}")
 
-    def start_next_round(self):
-        print("Lancer le prochain round")
+    def display_show_scoreboard(self, scoreboard):
+        print("=== CLASSEMENT ===")
+        for i, (player, score) in enumerate(scoreboard, 1):
+            print(f"  {i}. {player} - {score} pts")
+
+    def display_match(self, match):
+        print(f"\n{match.player1} vs {match.player2}")
+
+    def display_match_results(self, match, round_):
+        print(f"=== RESULTATS DU {round_.name}  ===")
+        print(f"1. {match.player1} gagne")
+        print(f"2. {match.player2} gagne")
+        print(f"3. Match nul")
+        print(f"0. Retour")
+    
 
     
     
