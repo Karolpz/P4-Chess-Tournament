@@ -1,5 +1,6 @@
 from models.round import Round
 from models.match import Match
+from models.player import Player
 import random
 
 class Tournament:
@@ -14,6 +15,34 @@ class Tournament:
         self.rounds = []
         self.players = []
         self.description = description
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "location": self.location,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "number_of_rounds": self.number_of_rounds,
+            "description": self.description,
+            "players": [p.national_id for p in self.players],
+            "rounds": [r.to_dict() for r in self.rounds],
+
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        tournament = cls(
+            name=data["name"],
+            location=data["location"],
+            start_date=data["start_date"],
+            end_date=data["end_date"],
+            number_of_rounds=data["number_of_rounds"],
+            description=data["description"],
+        )
+        tournament.current_round = data["current_round"]
+        tournament.players = data["players"]
+        tournament.rounds = [Round.from_dict(r) for r in data["rounds"]]
+        return tournament
 
     def __repr__(self):
         return f"{self.name} / {self.location} / ({self.start_date} - {self.end_date})"
@@ -84,7 +113,5 @@ class Tournament:
     @property
     def is_finished(self):
         if self.current_round < self.number_of_rounds:
-            return False
-        if not self.rounds:
             return False
         return self.is_current_round_complete

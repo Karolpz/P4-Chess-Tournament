@@ -1,0 +1,26 @@
+[
+    {
+        "national_id": "AB12345",
+        "first_name": "Caroline",
+        "last_name": "Lopez",
+        "date_of_birth": "1996-04-03"
+    },
+    {
+        "national_id": "CD67890",
+        "first_name": "Thomas",
+        "last_name": "Dubois",
+        "date_of_birth": "1990-07-15"
+    },
+    {
+        "national_id": "EF11223",
+        "first_name": "Sophie",
+        "last_name": "Martin",
+        "date_of_birth": "1988-11-22"
+    },
+    {
+        "national_id": "GH44556",
+        "first_name": "Lucas",
+        "last_name": "Bernard",
+        "date_of_birth": "2001-03-08"
+    }
+]

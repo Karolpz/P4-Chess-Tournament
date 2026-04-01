@@ -2,10 +2,27 @@ import re
 
 class Player:
     def __init__(self, national_id, first_name, last_name, date_of_birth):
-        self.national_id = national_id
+        self.national_id = self.validate_national_id(national_id)
         self.first_name = first_name
         self.last_name = last_name
         self.date_of_birth = date_of_birth
+
+    def to_dict(self):
+        return {
+            "national_id": self.national_id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "date_of_birth": self.date_of_birth,
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            national_id=data["national_id"],
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            date_of_birth=data["date_of_birth"],
+        )
 
     def __repr__(self):
         return f"{self.last_name} {self.first_name} ({self.national_id})"
@@ -22,6 +39,7 @@ class Player:
     def __hash__(self):
         return hash(self.national_id)
     
+    @staticmethod
     def validate_national_id(national_id):
         pattern = r'^[A-Z]{2}\d{5}$'
         if not re.match(pattern, national_id.upper()):

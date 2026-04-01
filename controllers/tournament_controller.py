@@ -2,6 +2,7 @@ from models.tournament import Tournament
 from models.player import Player
 from views.tournament import TournamentMainView, TournamentAddView, TournamentAddPlayerView, TournamentListView, TournamentDetailsView
 from views.common_view import CommonView
+from utils.decorators import autosave
 
 class TournamentController:
     def __init__(self, database):
@@ -29,7 +30,7 @@ class TournamentController:
                     break
                 case _:
                     self.common_view.display_invalid_choice()
-
+    @autosave
     def add_tournament(self):
         self.add_view.display_add_tournament()
         data = self.add_view.get_tournament_data()
@@ -37,6 +38,8 @@ class TournamentController:
         self.database.tournaments.append(tournament)
         self.common_view.display_confirmation()
 
+    
+    @autosave
     def add_tournament_player(self):
         active = self.database.get_active_tournaments()
         if not active:
@@ -119,6 +122,7 @@ class TournamentController:
   
         return actions
 
+    @autosave
     def generate_next_round(self, tournament):
         round_ =tournament.generate_round()
         self.detail_view.display_round_matches(round_)
@@ -130,6 +134,7 @@ class TournamentController:
         self.detail_view.display_show_scoreboard(scoreboard)
         self.common_view.display_press_enter()
 
+    @autosave
     def enter_results(self, tournament):
         round_ = tournament.rounds[-1]
         for match in round_.matches:
@@ -148,8 +153,8 @@ class TournamentController:
                         break
                     case _:
                         self.common_view.display_invalid_choice()
-                self.common_view.display_confirmation()
-                self.common_view.display_press_enter()
+        self.common_view.display_confirmation()
+        self.common_view.display_press_enter()
 
     def show_matches(self, tournament):
         round_ = tournament.rounds[-1]

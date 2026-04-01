@@ -1,6 +1,7 @@
 from models.player import Player
 from views.player_view import PlayerMainView, PlayerListView, PlayerAddView
 from views.common_view import CommonView
+from utils.decorators import autosave
 
 class PlayerController:
     def __init__(self, database):
@@ -30,6 +31,7 @@ class PlayerController:
         self.list_view.display_players(players)
         self.list_view.get_user_choice()
 
+    @autosave
     def add_player(self):
         self.add_view.display_add_player()
         data = self.add_view.get_player_data()
