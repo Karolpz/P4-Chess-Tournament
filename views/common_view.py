@@ -11,3 +11,5 @@ class CommonView:
         input("\nAppuyez sur Entrée pour continuer...")
     def display_invalid_data(self, error):
         print(f"Données invalides : {error}")
+    def display_goodbye(self):
+        print("Au revoir !")

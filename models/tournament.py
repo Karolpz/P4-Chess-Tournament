@@ -23,6 +23,7 @@ class Tournament:
             "start_date": self.start_date,
             "end_date": self.end_date,
             "number_of_rounds": self.number_of_rounds,
+            "current_round": self.current_round,
             "description": self.description,
             "players": [p.national_id for p in self.players],
             "rounds": [r.to_dict() for r in self.rounds],
@@ -39,7 +40,7 @@ class Tournament:
             number_of_rounds=data["number_of_rounds"],
             description=data["description"],
         )
-        tournament.current_round = data["current_round"]
+        tournament.current_round = data.get("current_round", 0)
         tournament.players = data["players"]
         tournament.rounds = [Round.from_dict(r) for r in data["rounds"]]
         return tournament
@@ -95,8 +96,6 @@ class Tournament:
         return pairs
 
     def generate_round(self):
-        if self.rounds:
-            self.rounds[-1].mark_end_time()
         round_ = Round(f"Round {self.current_round + 1}")
         round_.mark_start_time()
         for player1, player2 in self.generate_pairs():

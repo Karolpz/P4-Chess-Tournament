@@ -1,6 +1,7 @@
 from views.main_view import MainView
 from controllers.player_controller import PlayerController
 from controllers.tournament_controller import TournamentController
+from controllers.report_controller import ReportController
 from views.common_view import CommonView
 from models.database import DataBase
 
@@ -21,9 +22,9 @@ class MainController:
                 case "2":
                     TournamentController(self.database).run()
                 case "3":
-                    print("Rapports - à venir")
+                    ReportController(self.database).run()
                 case "0":
-                    print("Au revoir !")
+                    self.common_view.display_goodbye()
                     break
                 case _:
                     self.common_view.display_invalid_choice()

@@ -124,7 +124,7 @@ class TournamentController:
 
     @autosave
     def generate_next_round(self, tournament):
-        round_ =tournament.generate_round()
+        round_ = tournament.generate_round()
         self.detail_view.display_round_matches(round_)
         self.common_view.display_confirmation()
         self.common_view.display_press_enter()
@@ -138,7 +138,7 @@ class TournamentController:
     def enter_results(self, tournament):
         round_ = tournament.rounds[-1]
         for match in round_.matches:
-            if not match.is_finished():
+            if not match.is_finished:
                 self.detail_view.display_match(match)
                 self.detail_view.display_match_results(match, round_)
                 choice = self.common_view.get_user_choice()
@@ -153,6 +153,7 @@ class TournamentController:
                         break
                     case _:
                         self.common_view.display_invalid_choice()
+        round_.mark_end_time()
         self.common_view.display_confirmation()
         self.common_view.display_press_enter()
 
