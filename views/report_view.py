@@ -1,13 +1,9 @@
-# views/report_view.py
-
 class ReportMainView:
     def display_main_menu(self):
         print("\n=== RAPPORTS ===")
         print("1. Tous les joueurs (alphabétique)")
         print("2. Tous les tournois")
-        print("3. Joueurs d'un tournoi")
-        print("4. Rounds d'un tournoi")
-        print("5. Matchs d'un tournoi")
+        print("3. Détail d'un tournoi")
         print("0. Retour")
 
 
@@ -30,33 +26,37 @@ class ReportView:
         for i, t in enumerate(tournaments, 1):
             print(f"  {i}. {t.name} — {t.location} "
                   f"({t.start_date} / {t.end_date})")
-        print("0. Retour")
+        print("  0. Retour")
 
-    def display_tournament_players(self, tournament):
-        print(f"\n=== JOUEURS — {tournament.name} ===")
+    def display_tournament_detail(self, tournament):
+        print(f"\n=== {tournament.name} ===")
+        print(f"  Lieu       : {tournament.location}")
+        print(f"  Dates      : {tournament.start_date} → {tournament.end_date}")
+        print(f"  Rounds     : {tournament.number_of_rounds}")
+        if tournament.description:
+            print(f"  Description: {tournament.description}")
+
+        print("\n--- JOUEURS ---")
         if not tournament.players:
-            print("Aucun joueur inscrit.")
-            return
-        for player in sorted(tournament.players):
-            print(f"  {player.last_name} {player.first_name} ({player.national_id})")
+            print("  Aucun joueur inscrit.")
+        else:
+            for player in sorted(tournament.players):
+                print(f"  {player.last_name} {player.first_name} ({player.national_id})")
 
-    def display_tournament_rounds(self, tournament):
-        print(f"\n=== ROUNDS — {tournament.name} ===")
+        print("\n--- ROUNDS & MATCHS ---")
         if not tournament.rounds:
-            print("Aucun round joué.")
-            return
-        for round_ in tournament.rounds:
-            status = f"terminé le {round_.end_time}" if round_.end_time else "en cours"
-            print(f"  {round_.name} — débuté le {round_.start_time} ({status})")
+            print("  Aucun round joué.")
+        else:
+            for round_ in tournament.rounds:
+                status = f"terminé le {round_.end_time}" if round_.end_time else "en cours"
+                print(f"\n  {round_.name} — {status}")
+                for match in round_.matches:
+                    print(f"    {match.player1.last_name} {match.score1} "
+                          f"— {match.score2} {match.player2.last_name}")
 
-    def display_tournament_matches(self, tournament):
-        print(f"\n=== MATCHS — {tournament.name} ===")
-        if not tournament.rounds:
-            print("Aucun match joué.")
-            return
-        for round_ in tournament.rounds:
-            print(f"\n  {round_.name}")
-            for match in round_.matches:
-                print(f"    {match.player1.last_name} {match.score1} "
-                      f"— {match.score2} {match.player2.last_name}")
- 
+        print("\n--- CLASSEMENT ---")
+        if not tournament.scores:
+            print("  Pas encore de scores.")
+        else:
+            for i, (player, score) in enumerate(tournament.scoreboard, 1):
+                print(f"  {i}. {player.last_name} {player.first_name} — {score} pts")

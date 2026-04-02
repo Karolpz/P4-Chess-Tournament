@@ -21,11 +21,7 @@ class ReportController:
                     self.view.display_all_tournaments(self.database.tournaments)
                     self.common_view.display_press_enter()
                 case "3":
-                    self.report_tournament_players()
-                case "4":
-                    self.report_tournament_rounds()
-                case "5":
-                    self.report_tournament_matches()
+                    self.report_tournament_detail()
                 case "0":
                     break
                 case _:
@@ -42,20 +38,8 @@ class ReportController:
             return None
         return self.database.tournaments[int(choice) - 1]
 
-    def report_tournament_players(self):
+    def report_tournament_detail(self):
         tournament = self.pick_tournament()
         if tournament:
-            self.view.display_tournament_players(tournament)
-            self.common_view.display_press_enter()
-
-    def report_tournament_rounds(self):
-        tournament = self.pick_tournament()
-        if tournament:
-            self.view.display_tournament_rounds(tournament)
-            self.common_view.display_press_enter()
-
-    def report_tournament_matches(self):
-        tournament = self.pick_tournament()
-        if tournament:
-            self.view.display_tournament_matches(tournament)
+            self.view.display_tournament_detail(tournament)
             self.common_view.display_press_enter()
