@@ -5,11 +5,12 @@ from controllers.report_controller import ReportController
 from views.common_view import CommonView
 from models.database import DataBase
 
+
 class MainController:
     def __init__(self):
         self.view = MainView()
         self.common_view = CommonView()
-        self.database = DataBase()  
+        self.database = DataBase()
 
     def run(self):
         while True:

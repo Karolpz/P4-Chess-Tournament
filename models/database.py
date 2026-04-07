@@ -7,6 +7,7 @@ from pathlib import Path
 PLAYERS_FILE = Path("data/players.json")
 TOURNAMENTS_FILE = Path("data/tournaments.json")
 
+
 class DataBase:
     def __init__(self):
         self.players = []
@@ -35,12 +36,9 @@ class DataBase:
     def load_tournaments(self):
         if TOURNAMENTS_FILE.exists():
             with open(TOURNAMENTS_FILE, encoding="utf-8") as f:
-                for data in json.load(f):
-                    tournament = Tournament.from_dict(data)
-                    tournament.players = [
-                        self.find_player(nid) for nid in data["players"]
-                    ]
-                    self.tournaments.append(tournament)
+                self.tournaments = [
+                    Tournament.from_dict(data, self) for data in json.load(f)
+                ]
 
     def load(self):
         self.load_players()
@@ -48,10 +46,7 @@ class DataBase:
 
     def get_active_tournaments(self):
         return [tournament for tournament in self.tournaments if not tournament.is_finished]
-    
-    def get_sorted_players(self):
-        return sorted(self.players)
-    
+
     def find_player(self, national_id):
         for player in self.players:
             if player.national_id == national_id:

@@ -1,5 +1,3 @@
-from models.player import Player
-
 class Match:
     def __init__(self, player1, player2):
         self.player1 = player1
@@ -9,17 +7,17 @@ class Match:
 
     def to_dict(self):
         return {
-            "player1": self.player1.to_dict(),
-            "player2": self.player2.to_dict(),
+            "player1": self.player1.national_id,
+            "player2": self.player2.national_id,
             "score1": self.score1,
             "score2": self.score2,
         }
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data, database):
         match = cls(
-            player1=Player.from_dict(data["player1"]),
-            player2=Player.from_dict(data["player2"]),
+            player1=database.find_player(data["player1"]),
+            player2=database.find_player(data["player2"]),
         )
         match.score1 = data["score1"]
         match.score2 = data["score2"]

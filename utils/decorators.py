@@ -1,5 +1,6 @@
 import functools
 
+
 def autosave(method):
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):

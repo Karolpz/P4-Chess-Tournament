@@ -3,6 +3,7 @@ from views.player_view import PlayerMainView, PlayerListView, PlayerAddView
 from views.common_view import CommonView
 from utils.decorators import autosave
 
+
 class PlayerController:
     def __init__(self, database):
         self.database = database
@@ -27,8 +28,7 @@ class PlayerController:
                     self.common_view.display_invalid_choice()
 
     def show_players(self):
-        players = self.database.get_sorted_players()
-        self.list_view.display_players(players)
+        self.list_view.display_players(sorted(self.database.players))
         self.list_view.get_user_choice()
 
     @autosave
@@ -41,7 +41,7 @@ class PlayerController:
             self.common_view.display_invalid_data(e)
             return
         confirm = self.add_view.confirm_player()
-        
+
         match confirm:
             case "1":
                 self.database.players.append(player)
@@ -50,5 +50,3 @@ class PlayerController:
                 return
             case _:
                 self.common_view.display_invalid_choice()
-
-        

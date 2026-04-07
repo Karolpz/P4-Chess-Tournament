@@ -26,7 +26,6 @@ class ReportView:
         for i, t in enumerate(tournaments, 1):
             print(f"  {i}. {t.name} — {t.location} "
                   f"({t.start_date} / {t.end_date})")
-        print("  0. Retour")
 
     def display_tournament_detail(self, tournament):
         print(f"\n=== {tournament.name} ===")

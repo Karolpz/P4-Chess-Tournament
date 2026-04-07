@@ -1,9 +1,9 @@
 [
     {
-        "name": "Tournoi Test",
-        "location": "Nice",
-        "start_date": "2026-04-03",
-        "end_date": "2026-04-03",
+        "name": "Tournoi Marseille",
+        "location": "Marseille",
+        "start_date": "2026-04-02",
+        "end_date": "26026-04-02",
         "number_of_rounds": 4,
         "current_round": 4,
         "description": "",
@@ -16,77 +16,37 @@
         "rounds": [
             {
                 "name": "Round 1",
-                "start_time": "2026-04-02 09:05:08",
-                "end_time": "2026-04-02 09:08:13",
+                "start_time": "2026-04-02 11:35:35",
+                "end_time": "2026-04-02 11:35:42",
                 "matches": [
                     {
-                        "player1": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
+                        "player1": "EF11223",
+                        "player2": "GH44556",
                         "score1": 1,
                         "score2": 0
                     },
                     {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "score1": 1,
-                        "score2": 0
+                        "player1": "AB12345",
+                        "player2": "CD67890",
+                        "score1": 0,
+                        "score2": 1
                     }
                 ]
             },
             {
                 "name": "Round 2",
-                "start_time": "2026-04-02 09:28:16",
-                "end_time": "2026-04-02 09:28:21",
+                "start_time": "2026-04-02 11:35:44",
+                "end_time": "2026-04-02 11:35:50",
                 "matches": [
                     {
-                        "player1": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "player2": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
+                        "player1": "CD67890",
+                        "player2": "EF11223",
                         "score1": 0.5,
                         "score2": 0.5
                     },
                     {
-                        "player1": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
-                        "player2": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
+                        "player1": "AB12345",
+                        "player2": "GH44556",
                         "score1": 0,
                         "score2": 1
                     }
@@ -94,38 +54,18 @@
             },
             {
                 "name": "Round 3",
-                "start_time": "2026-04-02 09:28:24",
-                "end_time": "2026-04-02 09:28:29",
+                "start_time": "2026-04-02 11:35:52",
+                "end_time": "2026-04-02 11:36:00",
                 "matches": [
                     {
-                        "player1": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "player2": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
+                        "player1": "CD67890",
+                        "player2": "GH44556",
                         "score1": 0,
                         "score2": 1
                     },
                     {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
+                        "player1": "EF11223",
+                        "player2": "AB12345",
                         "score1": 0.5,
                         "score2": 0.5
                     }
@@ -133,38 +73,18 @@
             },
             {
                 "name": "Round 4",
-                "start_time": "2026-04-02 09:28:32",
-                "end_time": "2026-04-02 09:28:37",
+                "start_time": "2026-04-02 11:36:03",
+                "end_time": "2026-04-02 11:36:08",
                 "matches": [
                     {
-                        "player1": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "player2": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
+                        "player1": "EF11223",
+                        "player2": "GH44556",
                         "score1": 1,
                         "score2": 0
                     },
                     {
-                        "player1": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
+                        "player1": "CD67890",
+                        "player2": "AB12345",
                         "score1": 0,
                         "score2": 1
                     }
@@ -173,176 +93,14 @@
         ]
     },
     {
-        "name": "Tournoi Marseille",
-        "location": "Marseille",
-        "start_date": "2026-04-01",
-        "end_date": "2026-04-01",
-        "number_of_rounds": 4,
-        "current_round": 4,
+        "name": "",
+        "location": "",
+        "start_date": "",
+        "end_date": "",
+        "number_of_rounds": 6,
+        "current_round": 0,
         "description": "",
-        "players": [
-            "AB12345",
-            "CD67890",
-            "EF11223",
-            "GH44556"
-        ],
-        "rounds": [
-            {
-                "name": "Round 1",
-                "start_time": "2026-04-01 11:04:06",
-                "end_time": "2026-04-01 11:04:18",
-                "matches": [
-                    {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
-                        "score1": 1,
-                        "score2": 0
-                    },
-                    {
-                        "player1": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "player2": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "score1": 0.5,
-                        "score2": 0.5
-                    }
-                ]
-            },
-            {
-                "name": "Round 2",
-                "start_time": "2026-04-01 11:04:18",
-                "end_time": "2026-04-01 11:04:34",
-                "matches": [
-                    {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "score1": 0.5,
-                        "score2": 0.5
-                    },
-                    {
-                        "player1": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
-                        "score1": 0,
-                        "score2": 1
-                    }
-                ]
-            },
-            {
-                "name": "Round 3",
-                "start_time": "2026-04-01 11:04:34",
-                "end_time": "2026-04-01 11:04:42",
-                "matches": [
-                    {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "score1": 1,
-                        "score2": 0
-                    },
-                    {
-                        "player1": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
-                        "player2": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "score1": 1,
-                        "score2": 0
-                    }
-                ]
-            },
-            {
-                "name": "Round 4",
-                "start_time": "2026-04-01 11:04:42",
-                "end_time": null,
-                "matches": [
-                    {
-                        "player1": {
-                            "national_id": "GH44556",
-                            "first_name": "Lucas",
-                            "last_name": "Bernard",
-                            "date_of_birth": "2001-03-08"
-                        },
-                        "player2": {
-                            "national_id": "AB12345",
-                            "first_name": "Caroline",
-                            "last_name": "Lopez",
-                            "date_of_birth": "1996-04-03"
-                        },
-                        "score1": 0.5,
-                        "score2": 0.5
-                    },
-                    {
-                        "player1": {
-                            "national_id": "CD67890",
-                            "first_name": "Thomas",
-                            "last_name": "Dubois",
-                            "date_of_birth": "1990-07-15"
-                        },
-                        "player2": {
-                            "national_id": "EF11223",
-                            "first_name": "Sophie",
-                            "last_name": "Martin",
-                            "date_of_birth": "1988-11-22"
-                        },
-                        "score1": 0,
-                        "score2": 1
-                    }
-                ]
-            }
-        ]
+        "players": [],
+        "rounds": []
     }
 ]

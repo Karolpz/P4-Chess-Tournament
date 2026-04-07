@@ -1,8 +1,14 @@
 from models.tournament import Tournament
-from models.player import Player
-from views.tournament import TournamentMainView, TournamentAddView, TournamentAddPlayerView, TournamentListView, TournamentDetailsView
+from views.tournament import (
+    TournamentMainView,
+    TournamentAddView,
+    TournamentAddPlayerView,
+    TournamentListView,
+    TournamentDetailsView
+    )
 from views.common_view import CommonView
 from utils.decorators import autosave
+
 
 class TournamentController:
     def __init__(self, database):
@@ -12,7 +18,7 @@ class TournamentController:
         self.add_player_view = TournamentAddPlayerView()
         self.list_view = TournamentListView()
         self.detail_view = TournamentDetailsView()
-        self.common_view = CommonView() 
+        self.common_view = CommonView()
 
     def run(self):
         while True:
@@ -30,6 +36,7 @@ class TournamentController:
                     break
                 case _:
                     self.common_view.display_invalid_choice()
+
     @autosave
     def add_tournament(self):
         self.add_view.display_add_tournament()
@@ -38,7 +45,6 @@ class TournamentController:
         self.database.tournaments.append(tournament)
         self.common_view.display_confirmation()
 
-    
     @autosave
     def add_tournament_player(self):
         active = self.database.get_active_tournaments()
@@ -53,7 +59,7 @@ class TournamentController:
             return
 
         tournament = active[int(choice) - 1]
-        
+
         while True:
             national_id = self.add_player_view.ask_player_id()
             if national_id == "0":
@@ -73,7 +79,7 @@ class TournamentController:
             self.list_view.display_no_active_tournament()
             self.common_view.display_press_enter()
             return
-        
+
         self.list_view.display_current_tournament(active)
         choice = self.common_view.get_user_choice()
 
@@ -104,11 +110,10 @@ class TournamentController:
                 action_map[selected](tournament)
             else:
                 self.common_view.display_invalid_choice()
-            
 
     def get_available_actions(self, tournament):
         actions = ["show_scores"]
-        if tournament.current_round == 0:   
+        if tournament.current_round == 0:
             actions.append("start")
         elif not tournament.is_current_round_complete:
             actions.append("enter_results")
@@ -119,7 +124,7 @@ class TournamentController:
             actions.append("show_matches")
 
         actions.append("back")
-  
+
         return actions
 
     @autosave
@@ -161,4 +166,3 @@ class TournamentController:
         round_ = tournament.rounds[-1]
         self.detail_view.display_round_matches(round_)
         self.common_view.display_press_enter()
-                

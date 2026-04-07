@@ -4,8 +4,8 @@ from models.match import Match
 
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-class Round:
 
+class Round:
     def __init__(self, name):
         self.name = name
         self.start_time = None
@@ -21,7 +21,7 @@ class Round:
         }
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data, database):
         round_ = cls(name=data["name"])
         round_.start_time = (
             datetime.strptime(data["start_time"], DATETIME_FORMAT)
@@ -31,7 +31,7 @@ class Round:
             datetime.strptime(data["end_time"], DATETIME_FORMAT)
             if data.get("end_time") else None
         )
-        round_.matches = [Match.from_dict(m) for m in data.get("matches", [])]
+        round_.matches = [Match.from_dict(m, database) for m in data.get("matches", [])]
         return round_
 
     def __repr__(self):
@@ -46,4 +46,3 @@ class Round:
     @property
     def is_complete(self):
         return bool(self.matches) and all(match.is_finished for match in self.matches)
-    

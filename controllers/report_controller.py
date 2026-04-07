@@ -1,6 +1,7 @@
 from views.report_view import ReportView, ReportMainView
 from views.common_view import CommonView
 
+
 class ReportController:
     def __init__(self, database):
         self.database = database
@@ -29,7 +30,6 @@ class ReportController:
 
     def pick_tournament(self):
         if not self.database.tournaments:
-            self.view.display_all_tournaments([])
             self.common_view.display_press_enter()
             return None
         self.view.display_all_tournaments(self.database.tournaments)

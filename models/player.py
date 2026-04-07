@@ -1,5 +1,6 @@
 import re
 
+
 class Player:
     def __init__(self, national_id, first_name, last_name, date_of_birth):
         self.national_id = self.validate_national_id(national_id)
@@ -29,16 +30,17 @@ class Player:
 
     def __lt__(self, other):
         return (self.last_name.lower(), self.first_name.lower()) < \
-               (other.last_name.lower(), other.first_name.lower()) # Permet de comparer les joueurs pour ensuite les trier par ordre alphabétique
+               (other.last_name.lower(), other.first_name.lower()
+                )  # Permet de comparer les joueurs pour ensuite les trier par ordre alphabétique
 
     def __eq__(self, other):
         if not isinstance(other, Player):
             return NotImplemented
         return self.national_id == other.national_id
-    
+
     def __hash__(self):
         return hash(self.national_id)
-    
+
     @staticmethod
     def validate_national_id(national_id):
         pattern = r'^[A-Z]{2}\d{5}$'

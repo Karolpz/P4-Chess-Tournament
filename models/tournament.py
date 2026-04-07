@@ -1,7 +1,7 @@
 from models.round import Round
 from models.match import Match
-from models.player import Player
 import random
+
 
 class Tournament:
     def __init__(self, name, location, start_date, end_date,
@@ -27,11 +27,10 @@ class Tournament:
             "description": self.description,
             "players": [p.national_id for p in self.players],
             "rounds": [r.to_dict() for r in self.rounds],
-
         }
-    
+
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data, database):
         tournament = cls(
             name=data["name"],
             location=data["location"],
@@ -41,8 +40,10 @@ class Tournament:
             description=data["description"],
         )
         tournament.current_round = data.get("current_round", 0)
-        tournament.players = data["players"]
-        tournament.rounds = [Round.from_dict(r) for r in data["rounds"]]
+        tournament.players = [
+            database.find_player(national_id) for national_id in data["players"]
+        ]
+        tournament.rounds = [Round.from_dict(r, database) for r in data["rounds"]]
         return tournament
 
     def __repr__(self):
@@ -63,7 +64,7 @@ class Tournament:
     @property
     def scoreboard(self):
         return sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
-    
+
     def has_played(self, player1, player2):
         for round_ in self.rounds:
             for match in round_.matches:
@@ -103,12 +104,13 @@ class Tournament:
         self.rounds.append(round_)
         self.next_round()
         return round_
-    
+
     @property
     def is_current_round_complete(self):
         if not self.rounds:
             return False
         return self.rounds[-1].is_complete
+
     @property
     def is_finished(self):
         if self.current_round < self.number_of_rounds:
