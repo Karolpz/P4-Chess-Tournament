@@ -11,7 +11,10 @@ from utils.decorators import autosave
 
 
 class TournamentController:
+    """Contrôleur gérant la création et le déroulement des tournois."""
+
     def __init__(self, database):
+        """Initialise le contrôleur avec la base de données et les vues associées."""
         self.database = database
         self.main_view = TournamentMainView()
         self.add_view = TournamentAddView()
@@ -21,6 +24,7 @@ class TournamentController:
         self.common_view = CommonView()
 
     def run(self):
+        """Affiche le menu des tournois et gère les choix de l'utilisateur."""
         while True:
             self.main_view.display_main_menu()
             choice = self.common_view.get_user_choice()
@@ -39,6 +43,7 @@ class TournamentController:
 
     @autosave
     def add_tournament(self):
+        """Collecte les données d'un nouveau tournoi, le crée et l'ajoute à la base de données."""
         self.add_view.display_add_tournament()
         data = self.add_view.get_tournament_data()
         tournament = Tournament(**data)
@@ -47,6 +52,7 @@ class TournamentController:
 
     @autosave
     def add_tournament_player(self):
+        """Permet d'ajouter des joueurs à un tournoi actif en saisissant leur identifiant national."""
         active = self.database.get_active_tournaments()
         if not active:
             self.list_view.display_no_active_tournament()
@@ -74,6 +80,7 @@ class TournamentController:
                 self.add_player_view.display_player_not_found(national_id)
 
     def get_tournament_details(self):
+        """Affiche les détails d'un tournoi actif et propose les actions disponibles."""
         active = self.database.get_active_tournaments()
         if not active:
             self.list_view.display_no_active_tournament()
@@ -112,6 +119,7 @@ class TournamentController:
                 self.common_view.display_invalid_choice()
 
     def get_available_actions(self, tournament):
+        """Retourne la liste des actions disponibles selon l'état actuel du tournoi."""
         actions = ["show_scores"]
         if tournament.current_round == 0:
             actions.append("start")
@@ -129,18 +137,21 @@ class TournamentController:
 
     @autosave
     def generate_next_round(self, tournament):
+        """Génère le prochain round du tournoi et affiche les matchs créés."""
         round_ = tournament.generate_round()
         self.detail_view.display_round_matches(round_)
         self.common_view.display_confirmation()
         self.common_view.display_press_enter()
 
     def show_scoreboard(self, tournament):
+        """Affiche le classement actuel du tournoi."""
         scoreboard = tournament.scoreboard
         self.detail_view.display_show_scoreboard(scoreboard)
         self.common_view.display_press_enter()
 
     @autosave
     def enter_results(self, tournament):
+        """Permet de saisir les résultats des matchs non terminés du round en cours."""
         round_ = tournament.rounds[-1]
         for match in round_.matches:
             if not match.is_finished:
@@ -163,6 +174,7 @@ class TournamentController:
         self.common_view.display_press_enter()
 
     def show_matches(self, tournament):
+        """Affiche les matchs du round en cours."""
         round_ = tournament.rounds[-1]
         self.detail_view.display_round_matches(round_)
         self.common_view.display_press_enter()

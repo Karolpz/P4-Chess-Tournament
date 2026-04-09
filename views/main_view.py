@@ -1,5 +1,8 @@
 class MainView:
+    """Vue du menu principal de l'application."""
+
     def display_main_menu(self):
+        """Affiche le menu principal avec les options de navigation."""
         print("=== MENU PRINCIPAL ===")
         print("1. Gestion des joueurs")
         print("2. Gestion des tournois")
@@ -7,4 +10,5 @@ class MainView:
         print("0. Quitter")
 
     def get_user_choice(self):
+        """Récupère le choix saisi par l'utilisateur."""
         return input("\nVotre choix : ")

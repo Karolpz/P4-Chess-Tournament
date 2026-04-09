@@ -4,8 +4,11 @@ import random
 
 
 class Tournament:
+    """Représente un tournoi d'échecs avec ses joueurs, rounds et résultats."""
+
     def __init__(self, name, location, start_date, end_date,
                  number_of_rounds=4, description=""):
+        """Initialise un tournoi avec ses informations de base."""
         self.name = name
         self.location = location
         self.start_date = start_date
@@ -17,6 +20,7 @@ class Tournament:
         self.description = description
 
     def to_dict(self):
+        """Convertit le tournoi en un dictionnaire sérialisable."""
         return {
             "name": self.name,
             "location": self.location,
@@ -31,6 +35,7 @@ class Tournament:
 
     @classmethod
     def from_dict(cls, data, database):
+        """Crée un tournoi à partir d'un dictionnaire et d'une base de données."""
         tournament = cls(
             name=data["name"],
             location=data["location"],
@@ -47,13 +52,16 @@ class Tournament:
         return tournament
 
     def __repr__(self):
+        """Retourne une représentation du tournoi."""
         return f"{self.name} / {self.location} / ({self.start_date} - {self.end_date})"
 
     def next_round(self):
+        """Incrémente le compteur de rounds du tournoi."""
         self.current_round += 1
 
     @property
     def scores(self):
+        """Retourne un dictionnaire associant chaque joueur à son score total."""
         scores = {player: 0 for player in self.players}
         for round_ in self.rounds:
             for match in round_.matches:
@@ -63,9 +71,11 @@ class Tournament:
 
     @property
     def scoreboard(self):
+        """Retourne la liste des joueurs triés par score décroissant."""
         return sorted(self.scores.items(), key=lambda x: x[1], reverse=True)
 
     def has_played(self, player1, player2):
+        """Retourne True si les deux joueurs se sont déjà affrontés dans ce tournoi."""
         for round_ in self.rounds:
             for match in round_.matches:
                 if {match.player1, match.player2} == {player1, player2}:
@@ -73,6 +83,7 @@ class Tournament:
         return False
 
     def generate_pairs(self):
+        """Génère les paires de joueurs pour le prochain round en évitant les rematches."""
         if not self.rounds:
             players = random.sample(self.players, len(self.players))
         else:
@@ -97,6 +108,7 @@ class Tournament:
         return pairs
 
     def generate_round(self):
+        """Crée un nouveau round avec les matchs générés et l'ajoute au tournoi."""
         round_ = Round(f"Round {self.current_round + 1}")
         round_.mark_start_time()
         for player1, player2 in self.generate_pairs():
@@ -107,12 +119,14 @@ class Tournament:
 
     @property
     def is_current_round_complete(self):
+        """Retourne True si le round en cours est terminé."""
         if not self.rounds:
             return False
         return self.rounds[-1].is_complete
 
     @property
     def is_finished(self):
+        """Retourne True si tous les rounds ont été joués et complétés."""
         if self.current_round < self.number_of_rounds:
             return False
         return self.is_current_round_complete

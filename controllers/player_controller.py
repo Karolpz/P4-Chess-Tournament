@@ -5,7 +5,10 @@ from utils.decorators import autosave
 
 
 class PlayerController:
+    """Contrôleur gérant les opérations liées aux joueurs."""
+
     def __init__(self, database):
+        """Initialise le contrôleur avec la base de données et les vues associées."""
         self.database = database
         self.main_view = PlayerMainView()
         self.list_view = PlayerListView()
@@ -13,6 +16,7 @@ class PlayerController:
         self.common_view = CommonView()
 
     def run(self):
+        """Affiche le menu principal des joueurs et gère les choix de l'utilisateur."""
         while True:
             self.main_view.display_main_players()
             choice = self.main_view.get_user_choice()
@@ -28,11 +32,13 @@ class PlayerController:
                     self.common_view.display_invalid_choice()
 
     def show_players(self):
+        """Affiche la liste des joueurs triés par ordre alphabétique."""
         self.list_view.display_players(sorted(self.database.players))
         self.list_view.get_user_choice()
 
     @autosave
     def add_player(self):
+        """Collecte les données d'un nouveau joueur, le crée et l'ajoute à la base de données après confirmation."""
         self.add_view.display_add_player()
         data = self.add_view.get_player_data()
         try:

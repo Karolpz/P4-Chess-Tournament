@@ -1,5 +1,8 @@
 class ReportMainView:
+    """Vue du menu principal des rapports."""
+
     def display_main_menu(self):
+        """Affiche le menu des rapports avec les options disponibles."""
         print("\n=== RAPPORTS ===")
         print("1. Tous les joueurs (alphabétique)")
         print("2. Tous les tournois")
@@ -8,8 +11,10 @@ class ReportMainView:
 
 
 class ReportView:
+    """Vue pour l'affichage des rapports détaillés."""
 
     def display_all_players(self, players):
+        """Affiche la liste complète de tous les joueurs enregistrés."""
         print("\n=== TOUS LES JOUEURS ===")
         if not players:
             print("Aucun joueur enregistré.")
@@ -19,6 +24,7 @@ class ReportView:
                   f"({player.national_id}) — né le {player.date_of_birth}")
 
     def display_all_tournaments(self, tournaments):
+        """Affiche la liste complète de tous les tournois enregistrés."""
         print("\n=== TOUS LES TOURNOIS ===")
         if not tournaments:
             print("Aucun tournoi enregistré.")
@@ -28,6 +34,7 @@ class ReportView:
                   f"({t.start_date} / {t.end_date})")
 
     def display_tournament_detail(self, tournament):
+        """Affiche le détail complet d'un tournoi : joueurs, rounds, matchs et classement."""
         print(f"\n=== {tournament.name} ===")
         print(f"  Lieu       : {tournament.location}")
         print(f"  Dates      : {tournament.start_date} → {tournament.end_date}")

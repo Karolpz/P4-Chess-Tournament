@@ -7,12 +7,16 @@ from models.database import DataBase
 
 
 class MainController:
+    """Contrôleur principal gérant la navigation entre les modules de l'application."""
+
     def __init__(self):
+        """Initialise le contrôleur principal avec la base de données et les vues associées."""
         self.view = MainView()
         self.common_view = CommonView()
         self.database = DataBase()
 
     def run(self):
+        """Affiche le menu principal et redirige vers le contrôleur correspondant au choix."""
         while True:
             self.view.display_main_menu()
             choice = self.view.get_user_choice()
