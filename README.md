@@ -4,18 +4,33 @@ Application de gestion de tournois d'échecs en ligne de commande, développée 
 
 ## Fonctionnalités
 
-- Créer et gérer des tournois d'échecs
-- Ajouter et gérer des joueurs
-- Générer automatiquement les paires de matchs (système suisse)
-- Enregistrer les résultats des matchs
-- Générer des rapports (classements, historique)
-- Persistance des données en JSON
+### Gestion des joueurs
+- Ajouter un joueur avec ses informations (nom, prénom, date de naissance, identifiant national)
+- Validation du format de l'identifiant national
+- Affichage de la liste des joueurs triés par ordre alphabétique
+
+### Gestion des tournois
+- Créer un tournoi (nom, lieu, dates, nombre de rounds, description)
+- Ajouter des joueurs existants à un tournoi en cours
+- Lancer les rounds et générer automatiquement les paires (système suisse)
+- Évite les rematches entre joueurs déjà affrontés
+- Enregistrer les résultats de chaque match (victoire joueur 1, victoire joueur 2, match nul)
+
+### Rapports
+- Liste de tous les joueurs enregistrés (ordre alphabétique)
+- Liste de tous les tournois
+- Détail complet d'un tournoi : rounds, matchs et classement final
+
+### Persistance
+- Sauvegarde automatique après chaque action via le décorateur `@autosave`
+- Données stockées en JSON dans le dossier `data/`
+- Rechargement automatique au démarrage de l'application
 
 ## Installation
 
 ### Prérequis
 
-- Python 3.x
+- Python 3.10+
 
 ### Cloner le projet
 ```bash
