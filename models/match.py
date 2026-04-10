@@ -1,5 +1,6 @@
 class Match:
     """Représente une partie entre deux joueurs dans un tournoi d'échecs."""
+
     def __init__(self, player1, player2):
         self.player1 = player1
         self.player2 = player2

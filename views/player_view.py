@@ -22,10 +22,6 @@ class PlayerListView:
         for player in players:
             print(f"{player.last_name} {player.first_name} - {player.national_id} - {player.date_of_birth}")
 
-    def get_user_choice(self):
-        """Attend que l'utilisateur appuie sur Entrée pour revenir au menu."""
-        return input("\nAppuyez sur Entrée pour retourner au menu des joueurs")
-
 
 class PlayerAddView:
     """Vue pour l'ajout d'un nouveau joueur."""

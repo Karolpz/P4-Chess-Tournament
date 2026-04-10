@@ -1,52 +1,80 @@
 [
     {
-        "name": "Tournoi Marseille",
-        "location": "Marseille",
-        "start_date": "2026-04-02",
-        "end_date": "26026-04-02",
+        "name": "Tournoi soutenance",
+        "location": "Paris",
+        "start_date": "2026-08-20",
+        "end_date": "2026-08-21",
         "number_of_rounds": 4,
         "current_round": 4,
         "description": "",
         "players": [
-            "AB12345",
-            "CD67890",
-            "EF11223",
-            "GH44556"
+            "AZ12345",
+            "ZE12345",
+            "ER12345",
+            "RT12345",
+            "TY12345",
+            "YU12345",
+            "UI12345",
+            "IO12345"
         ],
         "rounds": [
             {
                 "name": "Round 1",
-                "start_time": "2026-04-02 11:35:35",
-                "end_time": "2026-04-02 11:35:42",
+                "start_time": "2026-04-10 14:57:46",
+                "end_time": "2026-04-10 14:58:01",
                 "matches": [
                     {
-                        "player1": "EF11223",
-                        "player2": "GH44556",
+                        "player1": "AZ12345",
+                        "player2": "ER12345",
                         "score1": 1,
                         "score2": 0
                     },
                     {
-                        "player1": "AB12345",
-                        "player2": "CD67890",
+                        "player1": "ZE12345",
+                        "player2": "UI12345",
                         "score1": 0,
                         "score2": 1
+                    },
+                    {
+                        "player1": "RT12345",
+                        "player2": "YU12345",
+                        "score1": 0.5,
+                        "score2": 0.5
+                    },
+                    {
+                        "player1": "TY12345",
+                        "player2": "IO12345",
+                        "score1": 1,
+                        "score2": 0
                     }
                 ]
             },
             {
                 "name": "Round 2",
-                "start_time": "2026-04-02 11:35:44",
-                "end_time": "2026-04-02 11:35:50",
+                "start_time": "2026-04-10 14:58:14",
+                "end_time": "2026-04-10 14:59:27",
                 "matches": [
                     {
-                        "player1": "CD67890",
-                        "player2": "EF11223",
+                        "player1": "AZ12345",
+                        "player2": "TY12345",
+                        "score1": 1,
+                        "score2": 0
+                    },
+                    {
+                        "player1": "UI12345",
+                        "player2": "RT12345",
+                        "score1": 0,
+                        "score2": 1
+                    },
+                    {
+                        "player1": "YU12345",
+                        "player2": "ZE12345",
                         "score1": 0.5,
                         "score2": 0.5
                     },
                     {
-                        "player1": "AB12345",
-                        "player2": "GH44556",
+                        "player1": "ER12345",
+                        "player2": "IO12345",
                         "score1": 0,
                         "score2": 1
                     }
@@ -54,53 +82,66 @@
             },
             {
                 "name": "Round 3",
-                "start_time": "2026-04-02 11:35:52",
-                "end_time": "2026-04-02 11:36:00",
+                "start_time": "2026-04-10 14:59:28",
+                "end_time": "2026-04-10 14:59:37",
                 "matches": [
                     {
-                        "player1": "CD67890",
-                        "player2": "GH44556",
+                        "player1": "AZ12345",
+                        "player2": "RT12345",
+                        "score1": 1,
+                        "score2": 0
+                    },
+                    {
+                        "player1": "TY12345",
+                        "player2": "YU12345",
                         "score1": 0,
                         "score2": 1
                     },
                     {
-                        "player1": "EF11223",
-                        "player2": "AB12345",
+                        "player1": "UI12345",
+                        "player2": "IO12345",
                         "score1": 0.5,
                         "score2": 0.5
+                    },
+                    {
+                        "player1": "ZE12345",
+                        "player2": "ER12345",
+                        "score1": 0,
+                        "score2": 1
                     }
                 ]
             },
             {
                 "name": "Round 4",
-                "start_time": "2026-04-02 11:36:03",
-                "end_time": "2026-04-02 11:36:08",
+                "start_time": "2026-04-10 14:59:41",
+                "end_time": "2026-04-10 14:59:47",
                 "matches": [
                     {
-                        "player1": "EF11223",
-                        "player2": "GH44556",
+                        "player1": "AZ12345",
+                        "player2": "YU12345",
+                        "score1": 0,
+                        "score2": 1
+                    },
+                    {
+                        "player1": "RT12345",
+                        "player2": "IO12345",
                         "score1": 1,
                         "score2": 0
                     },
                     {
-                        "player1": "CD67890",
-                        "player2": "AB12345",
+                        "player1": "UI12345",
+                        "player2": "ER12345",
+                        "score1": 0.5,
+                        "score2": 0.5
+                    },
+                    {
+                        "player1": "TY12345",
+                        "player2": "ZE12345",
                         "score1": 0,
                         "score2": 1
                     }
                 ]
             }
         ]
-    },
-    {
-        "name": "",
-        "location": "",
-        "start_date": "",
-        "end_date": "",
-        "number_of_rounds": 6,
-        "current_round": 0,
-        "description": "",
-        "players": [],
-        "rounds": []
     }
 ]

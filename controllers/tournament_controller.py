@@ -1,11 +1,11 @@
 from models.tournament import Tournament
-from views.tournament import (
+from views.tournament_view import (
     TournamentMainView,
     TournamentAddView,
     TournamentAddPlayerView,
     TournamentListView,
     TournamentDetailsView
-    )
+)
 from views.common_view import CommonView
 from utils.decorators import autosave
 

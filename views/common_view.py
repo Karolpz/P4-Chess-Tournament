@@ -1,5 +1,6 @@
 class CommonView:
     """Vue commune pour les différentes interfaces utilisateur."""
+
     def get_user_choice(self):
         """Affiche les options et récupère le choix de l'utilisateur."""
         return input("\nVotre choix : ")

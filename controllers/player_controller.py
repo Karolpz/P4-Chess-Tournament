@@ -34,7 +34,7 @@ class PlayerController:
     def show_players(self):
         """Affiche la liste des joueurs triés par ordre alphabétique."""
         self.list_view.display_players(sorted(self.database.players))
-        self.list_view.get_user_choice()
+        self.common_view.display_press_enter()
 
     @autosave
     def add_player(self):

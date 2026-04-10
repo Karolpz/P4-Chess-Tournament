@@ -10,6 +10,7 @@ TOURNAMENTS_FILE = Path("data/tournaments.json")
 
 class DataBase:
     """Classe pour gérer la persistance des données des joueurs et des tournois."""
+
     def __init__(self):
         self.players = []
         self.tournaments = []

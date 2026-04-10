@@ -3,6 +3,7 @@ import re
 
 class Player:
     """Représente un joueur d'échecs."""
+
     def __init__(self, national_id, first_name, last_name, date_of_birth):
         self.national_id = self.validate_national_id(national_id)
         self.first_name = first_name
