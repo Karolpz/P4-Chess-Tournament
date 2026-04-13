@@ -8,4 +8,3 @@ class MainView:
         print("2. Gestion des tournois")
         print("3. Rapports")
         print("0. Quitter")
-

@@ -122,7 +122,8 @@ class TournamentController:
         """Retourne la liste des actions disponibles selon l'état actuel du tournoi."""
         actions = ["show_scores"]
         if tournament.current_round == 0:
-            actions.append("start")
+            if len(tournament.players) >= 2:
+                actions.append("start")
         elif not tournament.is_current_round_complete:
             actions.append("enter_results")
         elif not tournament.is_finished:

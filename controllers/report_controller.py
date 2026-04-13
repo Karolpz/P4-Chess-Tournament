@@ -41,6 +41,9 @@ class ReportController:
         choice = self.common_view.get_user_choice()
         if choice == "0":
             return None
+        if not choice.isdigit() or int(choice) > len(self.database.tournaments):
+            self.common_view.display_invalid_choice()
+            return None
         return self.database.tournaments[int(choice) - 1]
 
     def report_tournament_detail(self):

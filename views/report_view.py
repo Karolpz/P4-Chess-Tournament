@@ -33,6 +33,8 @@ class ReportView:
             print(f"  {i}. {t.name} — {t.location} "
                   f"({t.start_date} / {t.end_date})")
 
+        print("\n0. Retour")
+
     def display_tournament_detail(self, tournament):
         """Affiche le détail complet d'un tournoi : joueurs, rounds, matchs et classement."""
         print(f"\n=== {tournament.name} ===")
