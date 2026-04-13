@@ -4,7 +4,7 @@ class ReportMainView:
     def display_main_menu(self):
         """Affiche le menu des rapports avec les options disponibles."""
         print("\n=== RAPPORTS ===")
-        print("1. Tous les joueurs (alphabétique)")
+        print("1. Tous les joueurs")
         print("2. Tous les tournois")
         print("3. Détail d'un tournoi")
         print("0. Retour")
@@ -55,7 +55,7 @@ class ReportView:
         else:
             for round_ in tournament.rounds:
                 status = f"terminé le {round_.end_time}" if round_.end_time else "en cours"
-                print(f"\n  {round_.name} — {status}")
+                print(f"\n  {round_.name} — débuté le {round_.start_time} — {status}")
                 for match in round_.matches:
                     print(f"    {match.player1.last_name} {match.score1} "
                           f"— {match.score2} {match.player2.last_name}")

@@ -19,7 +19,7 @@ class MainController:
         """Affiche le menu principal et redirige vers le contrôleur correspondant au choix."""
         while True:
             self.view.display_main_menu()
-            choice = self.view.get_user_choice()
+            choice = self.common_view.get_user_choice()
 
             match choice:
                 case "1":

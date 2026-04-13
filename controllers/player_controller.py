@@ -19,7 +19,7 @@ class PlayerController:
         """Affiche le menu principal des joueurs et gère les choix de l'utilisateur."""
         while True:
             self.main_view.display_main_players()
-            choice = self.main_view.get_user_choice()
+            choice = self.common_view.get_user_choice()
 
             match choice:
                 case "1":

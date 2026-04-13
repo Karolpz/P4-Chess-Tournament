@@ -9,6 +9,3 @@ class MainView:
         print("3. Rapports")
         print("0. Quitter")
 
-    def get_user_choice(self):
-        """Récupère le choix saisi par l'utilisateur."""
-        return input("\nVotre choix : ")

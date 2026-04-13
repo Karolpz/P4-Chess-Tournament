@@ -8,10 +8,6 @@ class PlayerMainView:
         print("2. Ajouter un joueur")
         print("0. Retour")
 
-    def get_user_choice(self):
-        """Récupère le choix saisi par l'utilisateur."""
-        return input("\nVotre choix : ")
-
 
 class PlayerListView:
     """Vue pour l'affichage de la liste des joueurs."""
