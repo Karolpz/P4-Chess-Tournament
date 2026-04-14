@@ -47,8 +47,16 @@ class TournamentController:
         self.add_view.display_add_tournament()
         data = self.add_view.get_tournament_data()
         tournament = Tournament(**data)
-        self.database.tournaments.append(tournament)
-        self.common_view.display_confirmation()
+        confirm = self.add_view.confirm_tournament()
+
+        match confirm:
+            case "1":
+                self.database.tournaments.append(tournament)
+                self.common_view.display_confirmation()
+            case "0":
+                return
+            case _:
+                self.common_view.display_invalid_choice()
 
     @autosave
     def add_tournament_player(self):

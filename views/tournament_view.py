@@ -29,6 +29,10 @@ class TournamentAddView:
             "description": input("Description du tournoi (facultatif) : ")
         }
 
+    def confirm_tournament(self):
+        """Confirme la création du tournoi."""
+        return input("\nConfirmez-vous l'ajout du tournoi ? (1 = Oui / 0 = Annuler) : ")
+
 
 class TournamentAddPlayerView:
     """Vue pour l'ajout de joueurs à un tournoi."""
