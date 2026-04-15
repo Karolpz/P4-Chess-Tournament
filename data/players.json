@@ -70,5 +70,23 @@
         "first_name": "Zoe",
         "last_name": "Grand",
         "date_of_birth": "2000-01-01"
+    },
+    {
+        "national_id": "LM12345",
+        "first_name": "Adam",
+        "last_name": "Klein",
+        "date_of_birth": "2000-01-01"
+    },
+    {
+        "national_id": "QS12345",
+        "first_name": "Pierre",
+        "last_name": "Pot",
+        "date_of_birth": "2001-05-25"
+    },
+    {
+        "national_id": "CV12345",
+        "first_name": "Tony",
+        "last_name": "Petit",
+        "date_of_birth": "2001-05-30"
     }
 ]

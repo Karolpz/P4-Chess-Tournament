@@ -23,9 +23,6 @@ class ReportController:
                     self.view.display_all_players(sorted(self.database.players))
                     self.common_view.display_press_enter()
                 case "2":
-                    self.view.display_all_tournaments(self.database.tournaments)
-                    self.common_view.display_press_enter()
-                case "3":
                     self.report_tournament_detail()
                 case "0":
                     break

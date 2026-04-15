@@ -6,7 +6,6 @@ class ReportMainView:
         print("\n=== RAPPORTS ===")
         print("1. Tous les joueurs")
         print("2. Tous les tournois")
-        print("3. Détail d'un tournoi")
         print("0. Retour")
 
 
@@ -26,6 +25,7 @@ class ReportView:
     def display_all_tournaments(self, tournaments):
         """Affiche la liste complète de tous les tournois enregistrés."""
         print("\n=== TOUS LES TOURNOIS ===")
+        print("Sélectionnez un tournoi pour voir les détails :")
         if not tournaments:
             print("Aucun tournoi enregistré.")
             return
